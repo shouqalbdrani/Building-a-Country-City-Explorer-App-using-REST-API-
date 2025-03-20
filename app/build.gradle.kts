@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.gson) // seralizable name for json file
+
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
