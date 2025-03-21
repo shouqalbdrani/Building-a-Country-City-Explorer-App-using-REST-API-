@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.buildingcountriesexplorerappusingapi.presentation.viewmodel.CountriesViewModel
@@ -42,8 +43,24 @@ fun CountriesScreen(
 
     val countries by viewModel.countries.collectAsState()
 
+
     LaunchedEffect(Unit) {
         viewModel.fetchCountries()
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp)
+    ){
+        Text(
+            text = "Country List",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 15.dp),
+            textAlign = TextAlign.Center
+        )
     }
 
     if (countries.isEmpty()) {
@@ -57,19 +74,18 @@ fun CountriesScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .padding(35.dp)
         ) {
             items(countries) { country ->
                 CountryItem(
                     countryName = "${country.country} (${country.code})",
-                    onCountryClick
+                    onCountryClick = { onCountryClick(country.country) }
+
                 )
             }
         }
     }
-}
-
-
+    }
 
 @Composable
 fun CountryItem(

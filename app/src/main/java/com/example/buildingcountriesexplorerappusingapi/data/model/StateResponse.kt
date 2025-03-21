@@ -1,15 +1,20 @@
 package com.example.buildingcountriesexplorerappusingapi.data.model
 
-import com.google.gson.annotations.SerializedName
-
 
 data class StateResponse(
-    val error: Boolean ,
+    val error: Boolean,
     val msg: String,
-    val data: List<State>
+    val data: CountryState
 )
 
-data class State(
-    @SerializedName("name") val stateName: String, // maps name in json to stateName
-    @SerializedName ("state_code") val stateCode : String // maps state_code in json to be stateCode
+data class CountryState(
+    val name: String, // name of country "data" : [{ "name": "Afghanistan", "states":[{"name":"Badakhshan".....
+    val states: List<State>
 )
+
+
+data class State(
+    val name: String
+   // val state_code: String
+)
+

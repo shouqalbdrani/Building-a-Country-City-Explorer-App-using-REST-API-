@@ -5,7 +5,7 @@ import com.example.buildingcountriesexplorerappusingapi.data.model.CountryRespon
 import com.example.buildingcountriesexplorerappusingapi.data.repositoryimplementation.CountryRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetCounteriesuseCase(private val repository : CountryRepository) { //  repository
+class GetCounteriesuseCase(private val repository : CountryRepository) {
     operator fun invoke(): Flow<List<Country>> {
         return repository.getCountries()
     }

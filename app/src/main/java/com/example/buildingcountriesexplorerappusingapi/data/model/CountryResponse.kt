@@ -8,9 +8,6 @@ data class CountryResponse(
     val data: List<Country>
 )
 
-
-
-
 data class Country(
     @SerializedName("country") val country: String,
     @SerializedName("code") val code: String
