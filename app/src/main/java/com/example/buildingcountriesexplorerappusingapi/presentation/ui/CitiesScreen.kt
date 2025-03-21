@@ -87,8 +87,8 @@ fun CityItem(cityName: String) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background,
-            contentColor = Color.Black
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = Color.White
         ),
         modifier = Modifier
             .fillMaxWidth()
