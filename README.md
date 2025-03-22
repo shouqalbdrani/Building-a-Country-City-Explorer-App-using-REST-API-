@@ -8,11 +8,11 @@ The Countries & Cities Explorer App is an interactive mobile application built u
 - Sync Gradle files
 - Run the project on an emulator
 ## Features Implemented:
-- 1. Implementing the Country List with LazyColumn
-  2. State & City Detail Screens with Navigation
-  3. Dark Mode & Theming
-  4. Clean Architecture Implementation
-  5. Advanced API Integration
+- Implementing the Country List with LazyColumn
+- State & City Detail Screens with Navigation
+- Dark Mode & Theming
+- Clean Architecture Implementation
+- Advanced API Integration
 ## Technologies Used:
 - Kotlin for development
 - Jetpack Compose fo UI
