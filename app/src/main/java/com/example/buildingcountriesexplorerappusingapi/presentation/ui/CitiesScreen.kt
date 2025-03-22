@@ -49,7 +49,7 @@ fun CitiesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(15.dp)
+            .padding(bottom = 5.dp)
     ){
         Text(
             text = "Cities List",

@@ -57,6 +57,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.gson) // seralizable name for json file
+    implementation(libs.okhttp3.logging.interceptor)
+
 
 
     androidTestImplementation(libs.androidx.junit)

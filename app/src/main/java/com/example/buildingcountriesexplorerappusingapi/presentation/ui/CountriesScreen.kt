@@ -50,7 +50,7 @@ fun CountriesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(15.dp)
+            .padding(bottom =5.dp)
     ){
         Text(
             text = "Country List",
@@ -74,7 +74,7 @@ fun CountriesScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(35.dp)
+                .padding(30.dp)
         ) {
             items(countries) { country ->
                 CountryItem(

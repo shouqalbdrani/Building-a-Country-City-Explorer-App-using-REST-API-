@@ -43,7 +43,7 @@ fun StatesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(15.dp)
+            .padding(bottom = 5.dp)
     ){
         Text(
             text = "States List",

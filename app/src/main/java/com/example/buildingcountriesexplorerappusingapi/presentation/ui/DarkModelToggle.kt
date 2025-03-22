@@ -15,10 +15,13 @@ fun DarkModeToggle(themeViewModel: ThemeViewModel = viewModel()) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(25.dp),
+            .padding(35.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = if (isDarkMode) "Dark Mode" else "Light Mode")
+        Text( modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 2.dp, top = 18.dp),
+            text = if (isDarkMode) "Dark Mode" else "Light Mode")
         Switch(
             checked = isDarkMode,
             onCheckedChange = { themeViewModel.toggleTheme() }
