@@ -32,21 +32,21 @@ import com.example.buildingcountriesexplorerappusingapi.presentation.viewmodel.C
 @Composable
 fun CountriesScreen(
     onCountryClick: (String) -> Unit
-) {
+) { // view model initialization
     val viewModel: CountriesViewModel = viewModel(
         factory = CountriesViewModelFactory(
-            GetCounteriesuseCase(
-                CountryRepository(ApiClient.provideApiService())
+            GetCounteriesuseCase( // use factory to pass use case and repository
+                CountryRepository(ApiClient.provideApiService()) // initializes the API client for fetching data
             )
         )
     )
-
+// observes the state flow StateFlow from CountriesViewModel and automatically update the UI when data changes
     val countries by viewModel.countries.collectAsState()
 
-
+//runs when the screen is composed
     LaunchedEffect(Unit) {
-        viewModel.fetchCountries()
-    }
+        viewModel.fetchCountries() // request the data
+    } // UI structure
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -62,7 +62,7 @@ fun CountriesScreen(
             textAlign = TextAlign.Center
         )
     }
-
+// empty state handling
     if (countries.isEmpty()) {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -92,7 +92,7 @@ fun CountryItem(
     countryName: String,
     onCountryClick: (String) -> Unit
 ) {
-    Card(
+    Card( // card for each country
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primary,
@@ -107,7 +107,7 @@ fun CountryItem(
                 interactionSource = remember { MutableInteractionSource() } // Required when removing ripple
             )
     ) {
-        Box(
+        Box( // text inside the Card
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .padding(30.dp)

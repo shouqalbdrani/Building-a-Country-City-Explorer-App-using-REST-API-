@@ -8,7 +8,7 @@ import com.example.buildingcountriesexplorerappusingapi.data.model.State
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-
+// Manage UI state and fetch States data
 class StateViewModel(
     private val getStatesUseCase: GetStatesUseCase
 ) : ViewModel() {
@@ -20,23 +20,11 @@ class StateViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
 
 
-//    fun fetchStates(countryName: String) {
-//        viewModelScope.launch {
-//            println("🌍 Fetching states for country: $countryName")
-//            _isLoading.value = true
-//            getStatesUseCase(countryName).collect { result ->
-//                println("📋 Received states: $result")
-//                _states.value = result
-//                _isLoading.value = false
-//            }
-//        }
-//    }
-
     fun fetchStates(countryName: String) {
         viewModelScope.launch {
             val validCountryName = getValidCountryName(countryName)
             println("🔍 Requesting states for: '$validCountryName'")  // Added Log
-            getStatesUseCase.invoke(validCountryName).collect { result ->
+            getStatesUseCase.invoke(validCountryName).collect { result -> // to retrieve list of states
                 println("📋 Received states: $result")
                 _states.value = result
             }
@@ -44,13 +32,13 @@ class StateViewModel(
     }
     private fun getValidCountryName(countryName: String): String { // for handle differnt name in request
         return when (countryName) {
-            "Arab World" -> "United Arab Emirates" // Correct country name for API
+            "Arab World" -> "United Arab Emirates"
             else -> countryName
         }
     }
 
 }
-
+// Create instance from SateViewModel
 class StateViewModelFactory(
     private val getStatesUseCase: GetStatesUseCase
 ) : ViewModelProvider.Factory {

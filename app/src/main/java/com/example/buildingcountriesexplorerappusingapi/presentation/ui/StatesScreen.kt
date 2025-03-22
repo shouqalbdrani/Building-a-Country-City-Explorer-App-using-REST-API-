@@ -27,20 +27,20 @@ import com.example.buildingcountriesexplorerappusingapi.presentation.viewmodel.S
 fun StatesScreen(
     navController: NavController,
     countryName: String,
-    viewModel: StateViewModel = viewModel(
-        factory = StateViewModelFactory(
+    viewModel: StateViewModel = viewModel( // view model initialization
+        factory = StateViewModelFactory( // // use factory to pass use case and repository
             GetStatesUseCase(
-                StateRepository(ApiClient.provideApiService())
+                StateRepository(ApiClient.provideApiService()) // initializes the API client for fetching data
             )
         )
     )
-) {
+) { // observes the state flow StateFlow from StateViewModel and automatically update the UI when data changes
     val states by viewModel.states.collectAsState()
 
-    LaunchedEffect(countryName) {
+    LaunchedEffect(countryName) { //runs when the screen is composed
         viewModel.fetchStates(countryName)
     }
-    Column(
+    Column( // UI structure
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 5.dp)
@@ -56,7 +56,7 @@ fun StatesScreen(
         )
     }
 
-    if (states.isEmpty()) {
+    if (states.isEmpty()) { // handle fetching
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center

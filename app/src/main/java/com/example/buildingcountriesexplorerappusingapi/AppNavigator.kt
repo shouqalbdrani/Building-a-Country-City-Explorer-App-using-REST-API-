@@ -15,32 +15,32 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @Composable
-fun AppNavigator() {
+fun AppNavigator() { // create navController to manage and track navigation
     val navController: NavHostController = rememberNavController()
 
-    NavHost(
+    NavHost( // define starting pont which is the countries screen
         navController = navController,
         startDestination = "countries"
     ) {
         composable("countries") {
-            CountriesScreen { selectedCountry ->
+            CountriesScreen { selectedCountry -> // when the screen open receive onCountryClick
                 val encodedCountryName =
-                    URLEncoder.encode(selectedCountry, StandardCharsets.UTF_8.toString())
+                    URLEncoder.encode(selectedCountry, StandardCharsets.UTF_8.toString()) // encode to ensure special char like space handled
 
-                Toast.makeText(
+                Toast.makeText( // showing the selected country
                     navController.context,
                     "Clicked: $selectedCountry",
                     Toast.LENGTH_SHORT
                 ).show()
 
-                navController.navigate("states/$encodedCountryName")
+                navController.navigate("states/$encodedCountryName") // navigate to states screen with the country that user choose
             }
         }
 
-        composable("states/{countryName}") { backStackEntry ->
+        composable("states/{countryName}") { backStackEntry -> // takes the country name from navigation argument
             val countryName = backStackEntry.arguments
                 ?.getString("countryName")
-                ?.let { URLDecoder.decode(it, StandardCharsets.UTF_8.toString()) }
+                ?.let { URLDecoder.decode(it, StandardCharsets.UTF_8.toString()) } // decodes the encoded character back to original form
                 ?: ""
 
             // Debug Log
@@ -48,10 +48,10 @@ fun AppNavigator() {
 
             StatesScreen(countryName = countryName, navController = navController)
         }
-        composable("citiesScreen/{countryName}/{stateName}") { backStackEntry ->
+        composable("citiesScreen/{countryName}/{stateName}") { backStackEntry -> // his screen retrieves both countryName and stateName from navigation argument
             val countryName = backStackEntry.arguments?.getString("countryName") ?: ""
             val stateName = backStackEntry.arguments?.getString("stateName") ?: ""
-            CitiesScreen(countryName, stateName, navController)
+            CitiesScreen(countryName, stateName, navController) // passed on cities screen
         }
 
     }

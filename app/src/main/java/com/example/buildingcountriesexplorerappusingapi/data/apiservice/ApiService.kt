@@ -17,10 +17,10 @@ import retrofit2.http.Part
 
 
 interface ApiService { // define endpoint
-    @GET ("countries/population")
-    suspend fun getCountries(): Response<CountryResponse>
+    @GET ("countries/population") // send request to endpoints ("countries/population")
+    suspend fun getCountries(): Response<CountryResponse> // returns a response object in the CountryResponse model
 
-    @POST("countries/states")
+    @POST("countries/states") // sends a POST request to the endpoint ("countries/states")
     suspend fun getStates(@Body requestBody: Map<String, String>): Response<StateResponse>
 
 
@@ -30,8 +30,8 @@ interface ApiService { // define endpoint
     ): CityResponse
 
 
-
-
+// GET when endpoints does not require complex data in the request body
+// POST Used when data filtering or complex conditions are needed
 
 }
 

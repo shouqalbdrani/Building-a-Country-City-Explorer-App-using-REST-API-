@@ -33,20 +33,21 @@ fun CitiesScreen(
     countryName: String,
     stateName: String,
     navController: NavController,
-    viewModel: CitiesViewModel = viewModel(
+    // // view model initialization
+    viewModel: CitiesViewModel = viewModel(  // use factory to pass use case and repository
         factory = CitiesViewModelFactory(
             GetCitiesUseCase(
-                CityRepository(ApiClient.provideApiService())
+                CityRepository(ApiClient.provideApiService()) // initializes the API client for fetching data
             )
         )
     )
-) {
+) { //  observes the state flow StateFlow from CitiesViewModel and automatically update the UI when data changes
     val cities by viewModel.cities.collectAsState()
 
-    LaunchedEffect(stateName) {
+    LaunchedEffect(stateName) { // runs when the screen is composed
         viewModel.fetchCities(countryName, stateName)
     }
-    Column(
+    Column( // UI structure
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 5.dp)

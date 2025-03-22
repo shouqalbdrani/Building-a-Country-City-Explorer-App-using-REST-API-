@@ -26,7 +26,7 @@ class CitiesViewModel(
         }
     }
 
-    private fun getValidStateName(stateName: String): String {
+    private fun getValidStateName(stateName: String): String { // handle differnt name in request
         return when (stateName) {
             "New York City" -> "New York"
             "CA" -> "California"
